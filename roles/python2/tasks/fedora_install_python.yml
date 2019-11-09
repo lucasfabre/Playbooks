@@ -1,0 +1,6 @@
+---
+- name: Install python2, python2-pip
+  dnf:
+    name: python2, python2-pip
+    update_cache: yes
+    state: latest

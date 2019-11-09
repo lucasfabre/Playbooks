@@ -1,0 +1,13 @@
+---
+- name: Install dnf-automatic
+  dnf:
+    name: dnf-automatic
+    update_cache: yes
+    state: latest
+
+- name: Start dnf-automatic service
+  service:
+    name: dnf-automatic-install.timer
+    state: started
+    daemon_reload: yes
+    enabled: yes

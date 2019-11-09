@@ -1,0 +1,6 @@
+---
+- name: Install rclone
+  dnf:
+    name: rclone
+    update_cache: yes
+    state: latest

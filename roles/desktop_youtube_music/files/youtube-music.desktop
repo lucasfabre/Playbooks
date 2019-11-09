@@ -1,0 +1,9 @@
+[Desktop Entry]
+Comment=Youtube Music
+Terminal=false
+GenericName=Youtube Music
+Name=Youtube Music
+Exec=/opt/Youtube-Music/youtube-music
+Type=Application
+Icon=/opt/Youtube-Music/resources/app/icon.png
+Categories=Audio;Music;Player;AudioVideo;

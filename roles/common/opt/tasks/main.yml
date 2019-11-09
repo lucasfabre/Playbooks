@@ -1,0 +1,12 @@
+---
+- name: Ensure /opt/bin exist
+  file:
+    path: /opt/bin
+    state: directory
+
+- name: Add /opt/bin in path
+  lineinfile:
+    path: /etc/profile.d/path.sh 
+    line: "PATH=$PATH:/opt/bin"
+    regexp: "PATH\\=\\$PATH\\:\\/opt\\/bin"
+    create: yes

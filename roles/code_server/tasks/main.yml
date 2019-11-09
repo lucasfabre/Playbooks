@@ -1,0 +1,55 @@
+---
+
+- name: Populate service facts
+  service_facts:
+
+- name: Stop code-server service
+  service:
+    name: codeserver
+    state: stoped
+  when: "'codeserver' in services"
+
+- name: Download code-server in /tmp
+  get_url:
+    url: "https://github.com/cdr/code-server/releases/download/2.1523-vsc1.38.1/code-server2.1523-vsc1.38.1-linux-x86_64.tar.gz"
+    dest: "/tmp/code-server.tar.gz"
+    follow: yes
+    mode: "644"
+
+- name: Remove old code-server install
+  file:
+    path: "/opt/code-server/"
+    state: absent
+
+- name: Recreate code-server directory
+  file:
+    path: "/opt/code-server/"
+    state: directory
+
+- name: Extract code-server in /opt/code-server
+  command: tar xzf /tmp/code-server.tar.gz -C /opt/code-server/ --strip 1
+  args:
+    warn: false
+
+- name: Remove the downloaded archive in /tmp
+  file:
+    path: "/tmp/code-server.tar.gz"
+    state: absent
+
+- name: Link code-server in path (/opt/bin)
+  file:
+    src: /opt/code-server/code-server
+    dest: "/opt/bin/code-server"
+    state: link
+
+- name: Create the codeserver.service file form template
+  template:
+    src: codeserver.service
+    dest: /etc/systemd/system/codeserver.service
+
+- name: Start code-server service
+  service:
+    name: codeserver
+    state: started
+    daemon_reload: yes
+    enabled: yes

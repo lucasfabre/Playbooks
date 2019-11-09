@@ -1,0 +1,30 @@
+---
+- name: Create the frez working folder
+  file:
+    path: /opt/frez-containers/
+    state: directory
+
+- name: Create the frez data dir
+  file:
+    path: /opt/frez-containers/data/
+    state: directory
+
+- name: Tear down existing services
+  shell: "[ -e docker-compose.yml ] && docker-compose down && docker-compose rm -f || true"
+  args:
+    chdir: /opt/frez-containers/
+
+- name: Copy the Frez docker compose file
+  copy:
+    src: frez-compose.yml
+    dest: /opt/frez-containers/docker-compose.yml
+
+- name: Create the .env file
+  template:
+    src: frez-compose.env
+    dest: /opt/frez-containers/.env
+
+- name: Start new services
+  command: docker-compose up -d
+  args:
+    chdir: /opt/frez-containers/

@@ -1,0 +1,55 @@
+---
+- name: Remove old Youtube Music in path
+  file:
+    path: /opt/bin/youtube-music
+    state: absent
+
+- name: Remove old Youtube Music desktop icon
+  file:
+    path: /usr/share/applications/youtube-music.desktop
+    state: absent
+
+- name: Remove old Youtube Music package
+  file:
+    path: /opt/Youtube-Music
+    state: absent
+
+- name: Install "nativefier" node.js package globally.
+  npm:
+    name: nativefier
+    global: yes
+
+- name: create working directory
+  file:
+    path: /tmp/youtube-music/
+    state: directory
+
+- name: create the base package
+  command: nativefier music.youtube.com --internal-urls "(.*?)(accounts\.google\.com/ServiceLogin|music\.youtube\.com)(.*?)" --name "Youtube Music"
+  args:
+    chdir: /tmp/youtube-music/
+
+- name: Move generated package to /opt/Youtube-Music
+  command: mv /tmp/youtube-music/youtube-music-linux-x64 /opt/Youtube-Music
+
+- name: Link Youtube-Music in path (/opt/bin)
+  file:
+    src: /opt/Youtube-Music/youtube-music
+    dest: /opt/bin/youtube-music
+    state: link
+
+- name: Create the desktop menu entry
+  copy:
+    src: youtube-music.desktop
+    dest: /opt/Youtube-Music/resources/app/
+
+- name: Link the desktop shortcut
+  file:
+    src: /opt/Youtube-Music/resources/app/youtube-music.desktop
+    dest: /usr/share/applications/youtube-music.desktop
+    state: link
+
+- name: Remove temporary directory
+  file:
+    path: /tmp/youtube-music/
+    state: absent

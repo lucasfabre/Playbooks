@@ -1,0 +1,12 @@
+[Unit]
+Description=start code-server
+
+[Service]
+User={{ code_server_USER | default("root") }}
+WorkingDirectory=/tmp/
+ExecStart=/bin/bash -c "PASSWORD={{ code_server_PASSWORD | default('qwerty') }} /opt/bin/code-server --port {{ code_server_PORT | default('3680') }} --auth password"
+Restart=always
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+---
+- name: create the user
+  include_tasks: create_user.yml
+
+- name: setup the shell
+  include_tasks: zsh.yml

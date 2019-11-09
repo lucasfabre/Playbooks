@@ -1,0 +1,30 @@
+#- hosts: testing
+#  remote_user: root
+#
+#  roles:
+#    - common
+#    - docker_host
+
+#- hosts: yellst
+#  remote_user: root
+#
+#  roles:
+#    - auto_updates
+#    - common
+#    - main_user
+#    - code_server
+#    - docker_host
+
+- hosts: frez
+  remote_user: root
+  roles:
+   - common
+   - auto_updates
+   - docker_host
+   - frez
+  
+#- hosts: freddy
+#  remote_user: root
+#  roles:
+#    - desktop_youtube_music
+  

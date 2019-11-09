@@ -1,0 +1,4 @@
+---
+frez_DOMAIN_NAME: "{{ vault_frez_DOMAIN_NAME }}"
+frez_CONTACT_EMAIL: "{{ vault_frez_CONTACT_EMAIL }}"
+frez_AUTHORIZED_PUBKEY: "{{ vault_frez_AUTHORIZED_PUBKEY }}"

@@ -1,0 +1,22 @@
+version: '3'
+services:
+
+  yellst:
+    image: lucasfabre/sshd-fedora:latest
+    container_name: yellst
+    labels:
+      com.centurylinklabs.watchtower.enable: "false"
+    environment:
+      - "SSH_PORT=3622"
+      - "PUBLIC_KEY=${PUBLIC_KEY}"
+      - "VIRTUAL_HOST=yellst.${BASE_DOMAIN}"
+      - "VIRTUAL_PORT=3680"
+      - "LETSENCRYPT_HOST=yellst.${BASE_DOMAIN}"
+      - "LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}"
+    ports:
+      - "3600-3700:3600-3700"
+    privileged: true
+    volumes:
+      - "${DATA_FOLDER}/Yellst/:/Yellst"
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /var/run/docker.soc:/var/run/docker.sock

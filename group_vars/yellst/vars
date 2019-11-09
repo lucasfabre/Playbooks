@@ -1,0 +1,9 @@
+---
+main_user_USERNAME: lucas
+main_user_UID: 1050
+main_user_PASSWORD: "{{ vault_main_user_PASSWORD }}"
+
+code_server_PASSWORD: "{{ vault_code_server_PASSWORD }}"
+code_server_USER: "lucas"
+
+code_server_PORT: 3680

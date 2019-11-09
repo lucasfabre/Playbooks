@@ -1,0 +1,4 @@
+---
+- name: Add /opt/bin in path for all users
+  include_role:
+    name: common/opt
