@@ -1,0 +1,23 @@
+---
+- name: Create /opt/kubectl directory
+  file:
+    path: /opt/kubectl
+    state: directory
+
+- name: Download kubectl in /opt/kubectl
+  shell: curl -L -o /opt/kubectl/kubectl https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+  args:
+    warn: false
+
+- name: Make /opt/kubectl/kubectl executable
+  file:
+    path: /opt/kubectl/kubectl
+    owner: root
+    group: root
+    mode: 755
+
+- name: Link kubectl in path (/opt/bin)
+  file:
+    src: /opt/kubectl/kubectl
+    dest: "/opt/bin/kubectl"
+    state: link

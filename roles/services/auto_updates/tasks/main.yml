@@ -1,0 +1,10 @@
+---
+- name: Configure auto updates (Fedora)
+  include_role:
+    name: services/auto_updates/fedora
+  when: ansible_distribution == "Fedora"
+
+- name: Configure auto updates (Debian)
+  include_role:
+    name: services/auto_updates/debian
+  when: ansible_distribution == "Debian"

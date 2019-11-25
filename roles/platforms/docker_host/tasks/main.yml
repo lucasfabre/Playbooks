@@ -1,0 +1,33 @@
+---
+- name: Install docker (Fedora)
+  include_role:
+    name: platforms/docker_host/fedora
+  when: ansible_distribution == "Fedora"
+
+- name: Install docker (Debian)
+  include_role:
+    name: platforms/docker_host/debian
+  when: ansible_distribution == "Debian"
+
+- name: Start and enable the docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Create /opt/docker-compose directory
+  file:
+    path: /opt/docker-compose
+    state: directory
+
+- name: Install compose in /opt/docker-compose
+  get_url:
+    url: https://github.com/docker/compose/releases/latest/download/run.sh
+    dest: /opt/docker-compose/docker-compose
+    mode: '0755'
+
+- name: Link compose in path (/opt/bin)
+  file:
+    src: /opt/docker-compose/docker-compose
+    dest: "/opt/bin/docker-compose"
+    state: link

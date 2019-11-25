@@ -1,0 +1,17 @@
+---
+- name: Create /opt/minikube directory
+  file:
+    path: /opt/minikube
+    state: directory
+
+- name: Install minikube in /opt/minikube
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /opt/minikube/minikube
+    mode: '0755'
+
+- name: Link minikube in path (/opt/bin)
+  file:
+    src: /opt/minikube/minikube
+    dest: "/opt/bin/minikube"
+    state: link

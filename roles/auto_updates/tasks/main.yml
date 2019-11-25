@@ -1,5 +1,0 @@
----
-- name: Configure auto updates (Fedora)
-  include_role:
-    name: auto_update/fedora
-  when: ansible_distribution == "Fedora"

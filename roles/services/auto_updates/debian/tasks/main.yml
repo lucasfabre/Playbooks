@@ -1,0 +1,10 @@
+---
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades,apt-listchanges
+    update_cache: yes
+    state: latest

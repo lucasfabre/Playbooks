@@ -1,0 +1,12 @@
+- hosts: che
+  remote_user: root
+  roles:
+   - common/opt
+   - services/auto_updates
+   - platforms/docker_host
+   - role: services/minikube
+     vars:
+       vm_driver: none
+   - apps/chectl
+   - apps/kubectl
+   - apps/helm/2

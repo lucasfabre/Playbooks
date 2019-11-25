@@ -1,4 +1,0 @@
----
-- name: install rclone (Fedora)
-  include_tasks: fedora_install_rclone.yml
-  when: ansible_distribution == "Fedora"

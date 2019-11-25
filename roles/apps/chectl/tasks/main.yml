@@ -1,0 +1,5 @@
+---
+- name: Install chectl
+  shell: bash -c "bash <(curl -sL  https://www.eclipse.org/che/chectl/)"
+  args:
+    warn: false

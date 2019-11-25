@@ -1,0 +1,5 @@
+---
+- name: Start minikube cluster
+  shell: /opt/bin/minikube --vm-driver={{vm_driver}} start
+  args:
+    warn: false
