@@ -1,0 +1,24 @@
+---
+- name: Download rclone (arm64)
+  get_url:
+    url: https://downloads.rclone.org/rclone-current-linux-arm64.zip
+    dest: /tmp/rclone_linux.zip
+  when: ansible_architecture == "aarch64"
+
+- name: Create /opt/rclone directory
+  file:
+    path: /opt/rclone
+    state: directory
+
+- name: Install rclone in /opt/rclone
+  shell:
+    cmd: unzip -j /tmp/rclone_linux.zip
+    chdir: /opt/rclone
+  args:
+    warn: false
+
+- name: Link rclone in path (/opt/bin)
+  file:
+    src: /opt/rclone/rclone
+    dest: /opt/bin/rclone
+    state: link

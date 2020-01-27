@@ -1,0 +1,28 @@
+---
+- name: Create golang directory
+  file:
+    path: '/opt/go/{{ golang_version }}'
+    state: directory
+
+- name: Extract golang from tmp
+  unarchive:
+    src: /tmp/golang-linux-amd64.tar.gz
+    dest: '/opt/go/{{ golang_version }}'
+    remote_src: yes
+
+- name: Delete downloaded archive
+  file:
+    path: /tmp/golang-linux-amd64.tar.gz
+    state: absent
+
+- name: Install go command
+  alternatives:
+    link: /opt/bin/go
+    name: go
+    path: /opt/go/{{ golang_version }}/go/bin/go
+
+- name: Install gofmt command
+  alternatives:
+    link: /opt/bin/gofmt
+    name: gofmt
+    path: /opt/go/{{ golang_version }}/go/bin/gofmt

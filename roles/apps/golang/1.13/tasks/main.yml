@@ -1,0 +1,11 @@
+---
+- name: Download golang 1.13
+  get_url:
+    url: https://dl.google.com/go/go1.13.5.linux-amd64.tar.gz
+    dest: /tmp/golang-linux-amd64.tar.gz
+
+- name: launch common golang role
+  include_role:
+    name: apps/golang/common
+  vars:
+    golang_version: "1.13" 

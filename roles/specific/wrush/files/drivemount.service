@@ -1,0 +1,12 @@
+[Unit]
+Description=Mount the google drive vault
+
+[Service]
+User=root
+ExecStart=/opt/bin/rclone mount EncryptDrive: /mnt/drive --allow-other --fast-list
+Restart=always
+ExecStop=/bin/fusermount -uz /mnt/drive
+Restart=on-abort
+
+[Install]
+WantedBy=default.target

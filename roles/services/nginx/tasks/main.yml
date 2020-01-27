@@ -1,0 +1,5 @@
+---
+- name: Install nginx (Debian)
+  include_role:
+    name: services/nginx/debian
+  when: ansible_distribution == "Debian"
