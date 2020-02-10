@@ -1,0 +1,12 @@
+---
+- name: Install fish (Debian)
+  include_role:
+    name: apps/fish/debian
+  when: ansible_distribution == "Debian"
+
+- name: Configure fish
+  include_role:
+    name: apps/fish/configure_user
+  when: user is defined
+  vars:
+    user: '{{ user }}'

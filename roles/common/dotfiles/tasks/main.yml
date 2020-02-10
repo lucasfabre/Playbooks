@@ -1,0 +1,7 @@
+---
+- name: Install dotfiles
+  shell: "git clone --bare git@github.com:lucasfabre/Dotfiles.git $HOME/.dotfiles"
+  args:
+    warn: no
+  become: yes
+  become_user: '{{ user }}'

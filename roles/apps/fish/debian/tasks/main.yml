@@ -1,0 +1,6 @@
+---
+- name: Install fish
+  apt:
+    name: fish
+    update_cache: yes
+    state: latest

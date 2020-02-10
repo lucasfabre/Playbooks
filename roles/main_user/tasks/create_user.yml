@@ -12,7 +12,6 @@
 - name: Create main_user
   user:
     name: "{{ main_user_USERNAME | default('user') }}"
-    uid: "{{ main_user_UID | default('1050') }}"
     append: yes
     password: "{{ main_user_PASSWORD | password_hash('sha512') }}"
     groups: docker, sudo

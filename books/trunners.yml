@@ -1,0 +1,11 @@
+- name: trunners
+  hosts: localhost
+  connection: local
+  roles:
+#   - common
+#   - role: apps/fish
+#     user: lucas.fabre
+#   - role: common/dotfiles
+#     user: lucas.fabre
+#    - apps/neovim
+    - platforms/docker_host
