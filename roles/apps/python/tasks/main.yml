@@ -1,0 +1,9 @@
+---
+- name: Install python2
+  include_role:
+    name: apps/python/2
+
+- name: Install python3
+  include_role:
+    name: apps/python/3
+

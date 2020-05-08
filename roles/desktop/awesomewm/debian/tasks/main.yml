@@ -1,0 +1,7 @@
+---
+- name: Install awesome
+  apt:
+    name: awesome
+    update_cache: yes
+    state: latest
+

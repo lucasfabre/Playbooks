@@ -1,0 +1,18 @@
+---
+- name: Install easy-novnc in /opt/bin/ (project repo http://github.com/geek1011/easy-novnc)
+  get_url:
+    url: https://github.com/geek1011/easy-novnc/releases/latest/download/easy-novnc_linux-64bit
+    dest: /opt/bin/novnc
+    mode: '0755'
+
+- name: Create novnc service file
+  template:
+    src: novnc.service
+    dest: /etc/systemd/system/novnc.service
+
+- name: Enable service novnc and start it
+  service:
+    name: novnc
+    state: started
+    enabled: yes
+

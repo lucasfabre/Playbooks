@@ -1,0 +1,5 @@
+---
+- name: Install tigervnc
+  apt:
+    name: tigervnc-standalone-server,tigervnc-common
+    state: latest

@@ -1,0 +1,6 @@
+---
+- name: Install python2,python-pip (the python-pip is for pip2 ATM there isn't a python2-pip package on debian)
+  apt:
+    name: python2,python-pip
+    update_cache: yes
+    state: latest

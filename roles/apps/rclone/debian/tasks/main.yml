@@ -1,0 +1,6 @@
+---
+- name: Install rclone (debian)
+  apt:
+    name: rclone
+    update_cache: yes
+    state: latest

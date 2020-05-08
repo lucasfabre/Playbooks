@@ -1,0 +1,10 @@
+---
+- name: Install dotfiles
+  command: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles/{{ application }}/.install"
+  args:
+    chdir: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles/{{ application }}"
+    warn: no
+  ignore_errors: yes
+  become: yes
+  become_user: '{{ user }}'
+  failed_when: False

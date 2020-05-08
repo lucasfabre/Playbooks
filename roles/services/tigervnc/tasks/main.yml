@@ -1,0 +1,30 @@
+---
+- name: Install TigerVNC (Debian)
+  include_role:
+    name: services/tigervnc/debian
+  when: ansible_distribution == "Debian"
+
+- name: Check if tigervnc config is present
+  stat:
+    path: "/home/{{ user }}/.vnc"
+  register: tigervnc_config
+
+- name: Configure user
+  shell: "yes {{ vnc_password }} | vncserver & sleep 3 && kill yes"
+  args:
+    warn: no
+  become: yes
+  become_user: "{{ user }}"
+  when: user is defined and tigervnc_config.stat.exists == False
+
+- name: Create tigervnc.service file
+  template:
+    src: tigervnc.service
+    dest: /etc/systemd/system/tigervnc@.service
+
+- name: Enable service tigervnc and start it
+  service:
+    name: tigervnc@1
+    state: started
+    enabled: yes
+

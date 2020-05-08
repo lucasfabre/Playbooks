@@ -1,0 +1,3 @@
+---
+dependencies:
+  - { role: utils/ssh/fingerprint/github.com }

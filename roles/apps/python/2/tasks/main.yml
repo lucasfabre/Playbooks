@@ -1,0 +1,19 @@
+---
+- name: Install python2 (Debian)
+  include_role:
+    name: apps/python/2/debian
+
+- name: Update the alternative for /usr/bin/python to /usr/bin/python2 with a priority of 20
+  alternatives:
+    name: python
+    link: /usr/bin/python
+    path: /usr/bin/python2
+    priority: 20
+
+- name: Update the alternative for /usr/bin/pip to /usr/bin/pip2 with a priority of 20
+  alternatives:
+    name: pip
+    link: /usr/bin/pip
+    path: /usr/bin/pip2
+    priority: 20
+

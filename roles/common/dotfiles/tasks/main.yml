@@ -1,7 +1,15 @@
 ---
-- name: Install dotfiles
-  shell: "git clone --bare git@github.com:lucasfabre/Dotfiles.git $HOME/.dotfiles"
-  args:
-    warn: no
+- name: Ensure Workspace/github.com/lucasfabre exist
+  file:
+    path: "/home/{{ user }}/Workspace/github.com/lucasfabre"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+
+- name: Clone or update the Dotfiles repo
+  git:
+    repo: "git@github.com:lucasfabre/Dotfiles.git"
+    dest: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles"
   become: yes
-  become_user: '{{ user }}'
+  become_user: "{{ user }}"
+

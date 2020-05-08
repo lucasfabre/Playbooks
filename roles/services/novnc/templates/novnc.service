@@ -1,0 +1,13 @@
+[Unit]
+Description=Start novnc at startup
+After=syslog.target network.target
+
+[Service]
+Type=simple
+User={{ user }}
+Group={{ user }}
+WorkingDirectory=/home/{{ user }}
+ExecStart=/opt/bin/novnc -a 0.0.0.0:8080 --port 5901 --basic-ui
+
+[Install]
+WantedBy=multi-user.target

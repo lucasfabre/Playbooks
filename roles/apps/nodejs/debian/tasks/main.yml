@@ -1,0 +1,6 @@
+---
+- name: Install nodejs
+  apt:
+    name: nodejs,npm
+    update_cache: yes
+    state: latest

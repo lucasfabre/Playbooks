@@ -1,0 +1,20 @@
+---
+- name: Install python3 (Debian)
+  include_role:
+    name: apps/python/3/debian
+  when: ansible_distribution == "Debian"
+
+- name: Update the alternative for /usr/bin/python to /usr/bin/python3 with a priority of 30
+  alternatives:
+    name: python
+    link: /usr/bin/python
+    path: /usr/bin/python3
+    priority: 30
+
+- name: Update the alternative for /usr/bin/pip to /usr/bin/pip3 with a priority of 30
+  alternatives:
+    name: pip
+    link: /usr/bin/pip
+    path: /usr/bin/pip3
+    priority: 30
+

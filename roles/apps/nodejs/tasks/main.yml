@@ -1,0 +1,5 @@
+---
+- name: Install nodejs (Debian)
+  include_role:
+    name: apps/nodejs/debian
+  when: ansible_distribution == "Debian"

@@ -1,0 +1,26 @@
+---
+#- name: Add retroarch ppa list (debian)
+#  template: 
+#    src: retroarch.list
+#    dest: /etc/apt/sources.list.d/retroarch.list
+
+
+    #sudo apt-key adv -- keyserver keyserver.ubuntu.com --recv-keys 3B2BA0B6750986899B189AFF18DAAE7FECA3745F
+
+- name: Install software-properties-common
+  apt:
+    name: software-properties-common
+    update_cache: yes
+    state: latest
+
+- name: Install Retroarch
+  shell: add-apt-repository ppa:libretro/stable && sudo apt-get update && sudo apt-get install retroarch*
+  args: 
+    warn: no
+
+
+#- name: Install rclone (debian)
+#  apt:
+#    name: rclone
+#    update_cache: yes
+#    state: latest

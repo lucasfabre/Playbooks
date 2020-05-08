@@ -8,5 +8,3 @@
   include_role:
     name: apps/fish/configure_user
   when: user is defined
-  vars:
-    user: '{{ user }}'

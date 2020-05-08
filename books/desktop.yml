@@ -1,0 +1,22 @@
+- hosts: Desktop
+  remote_user: root
+  roles:
+   - common
+   - desktop/lightdm
+   - desktop/awesomewm
+   - apps/git
+   - apps/neovim
+   - apps/nodejs
+   - apps/fish
+   - services/tigervnc
+   - services/novnc
+   - platforms/docker_host
+   - apps/python
+   - role: common/dotconfig
+     application: vim
+   - role: common/dotconfig
+     application: fish
+  vars:
+    user: lucas
+  vars_files:
+    - ../group_vars/vault

@@ -1,0 +1,5 @@
+---
+- name: Install awesome (Debian)
+  include_role:
+    name: desktop/awesomewm/debian
+  when: ansible_distribution == "Debian"

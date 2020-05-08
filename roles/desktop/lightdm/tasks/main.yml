@@ -1,0 +1,5 @@
+---
+- name: Install lightdm (Debian)
+  include_role:
+    name: desktop/lightdm/debian
+  when: ansible_distribution == "Debian"

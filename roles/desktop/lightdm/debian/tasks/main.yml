@@ -1,0 +1,7 @@
+---
+- name: Install lightdm
+  apt:
+    name: lightdm
+    update_cache: yes
+    state: latest
+

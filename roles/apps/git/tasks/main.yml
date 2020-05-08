@@ -1,0 +1,5 @@
+---
+- name: Install git (Debian)
+  include_role:
+    name: apps/git/debian
+  when: ansible_distribution == "Debian"
