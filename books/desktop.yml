@@ -12,10 +12,17 @@
    - services/novnc
    - platforms/docker_host
    - apps/python
+   - apps/google-chrome
+   - apps/rofi
+   - apps/kitty
    - role: common/dotconfig
      application: vim
    - role: common/dotconfig
+     application: kitty
+   - role: common/dotconfig
      application: fish
+   - role: common/dotconfig
+     application: awesomewm
   vars:
     user: lucas
   vars_files:

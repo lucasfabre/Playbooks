@@ -1,0 +1,6 @@
+---
+- name: Install rofi
+  apt:
+    name: rofi
+    update_cache: yes
+    state: latest

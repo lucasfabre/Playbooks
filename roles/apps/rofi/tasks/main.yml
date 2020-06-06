@@ -1,0 +1,5 @@
+---
+- name: Install rofi (Debian)
+  include_role:
+    name: apps/rofi/debian
+  when: ansible_distribution == "Debian"

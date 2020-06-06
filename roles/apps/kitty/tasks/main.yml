@@ -1,0 +1,5 @@
+---
+- name: Install kitty (Debian)
+  include_role:
+    name: apps/kitty/debian
+  when: ansible_distribution == "Debian"

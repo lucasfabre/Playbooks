@@ -1,0 +1,11 @@
+---
+- name: Check if google-chrome is already installed
+  stat:
+    path: /usr/bin/google-chrome
+  register: chrome_executable
+
+- name: Install google-chrome (Debian)
+  include_role:
+    name: apps/google-chrome/debian
+  when: ansible_distribution == "Debian" and not chrome_executable.stat.exists
+

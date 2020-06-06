@@ -1,0 +1,6 @@
+---
+- name: Install kitty
+  apt:
+    name: kitty
+    update_cache: yes
+    state: latest
