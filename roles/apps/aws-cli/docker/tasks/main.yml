@@ -1,0 +1,7 @@
+---
+- name: Install aws-cli (docker version)
+  copy:
+    src: aws.sh
+    dest: /usr/bin/aws
+    mode: 0755
+

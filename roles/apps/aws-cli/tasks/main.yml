@@ -1,0 +1,5 @@
+---
+- name: Install aws-cli (docker)
+  include_role:
+    name: apps/aws-cli/docker
+
