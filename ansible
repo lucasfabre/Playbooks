@@ -29,4 +29,4 @@ function install_ansible_debian {
   sudo apt install ansible
 }
 
-main
+main $@

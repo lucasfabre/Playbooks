@@ -1,0 +1,8 @@
+---
+- name: Install neovim
+  get_url:
+    url: "{{ url }}"
+    dest: "/usr/bin/nvim"
+    follow: yes
+    mode: "755"
+

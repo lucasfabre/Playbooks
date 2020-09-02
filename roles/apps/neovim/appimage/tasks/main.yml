@@ -1,0 +1,4 @@
+---
+- name: Install neovim latest
+  include_role:
+    name: apps/neovim/appimage/latest

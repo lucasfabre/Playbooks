@@ -1,5 +1,5 @@
 ---
-- name: Install neovim (Debian)
+- name: Install neovim (appimage)
   include_role:
-    name: apps/neovim/debian
-  when: ansible_distribution == "Debian"
+    name: apps/neovim/appimage
+

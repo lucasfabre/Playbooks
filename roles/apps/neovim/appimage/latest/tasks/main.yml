@@ -1,0 +1,7 @@
+---
+- name: Install neovim latest
+  include_role:
+    name: apps/neovim/appimage/common
+  vars:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+
