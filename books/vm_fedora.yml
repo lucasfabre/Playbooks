@@ -1,8 +1,0 @@
----
-- hosts: vm_fedora
-  remote_user: root
-  vars:
-    user: lucas.fabre
-  roles:
-   - common
-   - apps/fish

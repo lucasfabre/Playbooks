@@ -1,8 +1,0 @@
-- hosts: wrush
-  remote_user: root
-  roles:
-    #- common/opt
-    #- services/auto_updates
-    #- apps/rclone
-    #- specific/wrush
-  tasks:

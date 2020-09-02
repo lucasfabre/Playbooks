@@ -1,4 +1,0 @@
-- hosts: frez
-  remote_user: root
-  roles:
-   - apps/golang/1.13

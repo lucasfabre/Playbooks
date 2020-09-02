@@ -1,0 +1,21 @@
+- hosts: Trunners
+  remote_user: root
+  roles:
+   - common
+   - apps/git
+   - apps/neovim
+   - apps/nodejs
+   - apps/fish
+   - platforms/docker_host
+   - apps/python
+   - apps/kitty
+   - role: common/dotconfig
+     application: vim
+   - role: common/dotconfig
+     application: kitty
+   - role: common/dotconfig
+     application: fish
+  vars:
+    user: lucas
+  vars_files:
+    - ../group_vars/vault

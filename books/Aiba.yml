@@ -1,4 +1,4 @@
-- hosts: Desktop
+- hosts: Aiba
   remote_user: root
   roles:
    - common

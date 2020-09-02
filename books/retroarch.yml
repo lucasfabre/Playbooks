@@ -1,6 +1,0 @@
-- hosts: Retroarch
-  remote_user: root
-  roles:
-   - apps/rclone/debian
-   - apps/retroarch/debian
-
