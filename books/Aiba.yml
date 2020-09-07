@@ -16,6 +16,8 @@
    - apps/rofi
    - apps/kitty
    - "apps/aws-cli"
+   - "apps/code_server/3.5.0"
+   - specific/Aiba
    - role: common/dotconfig
      application: vim
    - role: common/dotconfig

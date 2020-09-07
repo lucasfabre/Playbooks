@@ -1,0 +1,5 @@
+---
+- name: Install bazel (Debian)
+  include_role:
+    name: apps/bazel/debian
+  when: ansible_distribution == "Debian"

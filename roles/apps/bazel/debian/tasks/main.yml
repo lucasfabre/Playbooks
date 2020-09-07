@@ -1,0 +1,17 @@
+---
+- name: Add apt bazel gpg key
+  apt_key:
+    url: https://bazel.build/bazel-release.pub.gpg
+    state: present
+
+- name: Add bazel repo
+  apt_repository:
+    repo: deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8
+    state: present
+    filename: google-chrome
+
+- name: Install bazel
+  apt:
+    name: bazel
+    update_cache: yes
+    state: latest

@@ -1,0 +1,10 @@
+---
+- apt_repository:
+    repo: 'deb [trusted=yes] https://apt.fury.io/caddy/ /'
+    state: present
+
+- name: Install caddy
+  apt:
+    name: caddy
+    update_cache: yes
+    state: latest
