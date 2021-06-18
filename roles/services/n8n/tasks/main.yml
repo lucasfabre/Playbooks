@@ -1,0 +1,54 @@
+---
+- name: Check if n8n already running in docker
+  command: docker inspect n8n
+  register: n8n_launched
+  ignore_errors: yes
+
+- name: Add custom n8n dockerfile
+  shell: |
+      cat > /tmp/n8nCustomDockerfile <<' EOF'
+      FROM arm32v7/node:12.19
+      ARG N8N_VERSION
+      RUN \
+        apt-get update && \
+        apt-get -y install graphicsmagick gosu build-essential python
+      COPY . /app
+      WORKDIR /app
+      RUN npx lerna bootstrap --hoist
+      RUN npm run build
+      ENV NODE_ENV production
+      USER node
+      CMD /app/packages/cli/bin/n8n start --tunnel
+      EOF
+  args:
+    warn: false
+  when: git_url is defined and git_branch is defined and version is defined and n8n_launched.rc != 0
+
+- name: Clone custom n8n repo
+  shell: |
+      cd /tmp
+      rm -rf /tmp/n8n
+      git clone {{ git_url }} -b {{ git_branch }} --single-branch --depth 1
+  args:
+    warn: false
+  when: git_url is defined and git_branch is defined and version is defined and n8n_launched.rc != 0
+
+- name: Build custom n8n docker image
+  command: docker build --build-arg N8N_VERSION={{ version }} -t n8n:{{ version }} -f /tmp/n8nCustomDockerfile /tmp/n8n
+  when: git_url is defined and git_branch is defined and version is defined and n8n_launched.rc != 0
+
+
+- name: Install n8n (Docker Install)
+  command: >
+      docker run -d
+        --name n8n
+        -p {{ port | default('5678') }}:5678
+        --restart unless-stopped
+        -v ~/.n8n:/home/node/.n8n
+        -e N8N_BASIC_AUTH_ACTIVE=true
+        -e N8N_BASIC_AUTH_USER={{ n8n_user | default('admin') }}
+        -e N8N_BASIC_AUTH_PASSWORD={{ n8n_password | default('admin') }}
+        {{ tag | default('n8nio/n8n:latest') }}
+        n8n start --tunnel
+  when: n8n_launched.rc != 0
+

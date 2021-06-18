@@ -1,4 +1,4 @@
-- hosts: Trunners
+- hosts: WSL
   remote_user: root
   roles:
    - common
@@ -8,11 +8,10 @@
    - apps/fish
    - platforms/docker_host
    - apps/python
-   - apps/kitty
+   - apps/ripgrep
+   - "apps/aws-cli"
    - role: common/dotconfig
      application: vim
-   - role: common/dotconfig
-     application: kitty
    - role: common/dotconfig
      application: fish
   vars:

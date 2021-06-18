@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: platforms/docker_host }
+

@@ -1,0 +1,5 @@
+---
+- name: Install RipGrep (Debian)
+  include_role:
+    name: apps/ripgrep/debian
+  when: ansible_distribution == "Debian"

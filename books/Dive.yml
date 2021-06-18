@@ -1,0 +1,25 @@
+- hosts: Dive
+  remote_user: root
+  roles:
+#   - common
+   #- platforms/docker_host
+   #- services/caddy
+   - role: services/n8n
+     tag: n8nio/n8n:latest-rpi
+     port: 5678
+  tasks:
+    #- name: Setup Caddyfile
+      #shell: |
+          #cat > /etc/caddy/Caddyfile <<' EOF'
+          #n8n.dive.vanill.eu {
+            #reverse_proxy localhost:5678
+          #}
+          #EOF
+      #args:
+        #warn: false
+    #- name: restart Caddy
+      #command: systemctl restart caddy
+  vars:
+    arch: "armhf"
+  vars_files:
+    - ../group_vars/vault
