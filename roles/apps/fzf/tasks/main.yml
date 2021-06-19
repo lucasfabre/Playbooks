@@ -1,0 +1,5 @@
+---
+- name: Install fzf (Debian)
+  include_role:
+    name: apps/fzf/linux_amd64
+  when: ansible_system == "Linux" and ansible_architecture == "x86_64"

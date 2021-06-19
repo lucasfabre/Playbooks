@@ -1,0 +1,10 @@
+---
+- name: Install oh-my-zsh
+  shell: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
+  args:
+    chdir: "/home/{{ user }}"
+    warn: no
+  ignore_errors: yes
+  become: yes
+  become_user: '{{ user }}'
+  failed_when: False

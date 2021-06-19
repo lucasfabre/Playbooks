@@ -1,0 +1,6 @@
+---
+- name: Install stow (debian)
+  apt:
+    name: stow
+    update_cache: yes
+    state: latest

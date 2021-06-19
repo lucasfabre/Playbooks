@@ -1,0 +1,30 @@
+---
+- name: Download fzf archive
+  include_role:
+    name: utils/download/github.com/release
+  vars:
+    github_repo: junegunn/fzf
+    release_pattern: "^fzf-.*-linux_amd64\\.tar\\.gz$"
+    destination: /tmp/fzf-latest-linux_amd64.tar.gz
+
+- name: Ensure /opt/fzf exist
+  file:
+    path: "/opt/fzf"
+    state: directory
+
+- name: Extract /tmp/fzf-latest-linux_amd64.tar.gz into /opt/fzf
+  unarchive:
+    src: /tmp/fzf-latest-linux_amd64.tar.gz
+    dest: /opt/fzf
+    remote_src: yes
+
+- name: Link fzf in path (/usr/bin/fzf)
+  file:
+    src: /opt/fzf/fzf
+    dest: /usr/bin/fzf
+    state: link
+
+- name: Cleanup
+  file:
+    path: /tmp/fzf-latest-linux_amd64.tar.gz
+    state: absent

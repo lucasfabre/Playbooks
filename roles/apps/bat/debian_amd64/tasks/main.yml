@@ -1,0 +1,17 @@
+---
+- name: Download bat deb
+  include_role:
+    name: utils/download/github.com/release
+  vars:
+    github_repo: sharkdp/bat
+    release_pattern: ".*bat_.*_amd64.deb$"
+    destination: /tmp/bat_latest_amd64.deb
+
+- name: Install bat
+  apt:
+    deb: /tmp/bat_latest_amd64.deb
+
+- name: Cleanup
+  file:
+    path: /tmp/bat_latest_amd64.deb
+    state: absent

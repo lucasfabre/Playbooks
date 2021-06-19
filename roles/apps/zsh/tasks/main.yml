@@ -1,0 +1,12 @@
+---
+- name: Install zsh (Debian)
+  include_role:
+    name: apps/zsh/debian
+  when: ansible_distribution == "Debian"
+
+- name: Change {{ user }} default shell
+  become: yes
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+  when: chsh|bool == True

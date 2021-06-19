@@ -5,4 +5,39 @@
     dest: "/usr/bin/nvim"
     follow: yes
     mode: "755"
+  when: extracted|bool == False
+
+- block:
+
+  - name: Ensure /opt/neovim exist
+    file:
+      path: /opt/neovim
+      state: directory
+
+  - name: Download neovim appimage
+    get_url:
+      url: "{{ url }}"
+      dest: "/opt/neovim/neovim.appimage"
+      follow: yes
+      mode: "755"
+
+  - name: Extract appimage
+    shell: '/opt/neovim/neovim.appimage --appimage-extract'
+    args:
+      chdir: "/opt/neovim/"
+      warn: no
+
+  - name: Change directory user rights
+    file:
+      path: /opt/neovim/
+      mode: u=rwX,g=rX,o=rX
+      recurse: yes
+
+  - name: Link neovim in path (/usr/bin/nvim)
+    file:
+      src: /opt/neovim/squashfs-root/usr/bin/nvim
+      dest: /opt/bin/nvim
+      state: link
+
+  when: extracted|bool == True
 

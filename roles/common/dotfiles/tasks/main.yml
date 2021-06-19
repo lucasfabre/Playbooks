@@ -10,6 +10,7 @@
   git:
     repo: "git@github.com:lucasfabre/Dotfiles.git"
     dest: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles"
+    update: no
   become: yes
   become_user: "{{ user }}"
 

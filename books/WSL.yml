@@ -1,19 +1,24 @@
 - hosts: WSL
   remote_user: root
   roles:
-   - common
-   - apps/git
-   - apps/neovim
-   - apps/nodejs
-   - apps/fish
-   - platforms/docker_host
-   - apps/python
-   - apps/ripgrep
-   - "apps/aws-cli"
-   - role: common/dotconfig
-     application: vim
-   - role: common/dotconfig
-     application: fish
+    - common
+    - apps/git
+    - role: apps/zsh
+      chsh: yes
+    - apps/oh-my-zsh
+    - role: apps/neovim
+      extracted: True
+    - apps/nodejs
+    - apps/python
+    - platforms/docker_host
+    - "apps/aws-cli"
+    - apps/bat
+    - apps/fzf
+    - apps/ripgrep
+    - role: common/dotconfig
+      application: vim
+    - role: common/dotconfig
+      application: zsh
   vars:
     user: lucas
   vars_files:

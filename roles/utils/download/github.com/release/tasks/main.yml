@@ -1,0 +1,16 @@
+---
+- name: Get release list for github.com/{{ github_repo }}
+  uri:
+    url: "https://api.github.com/repos/{{ github_repo }}/releases/latest"
+    return_content: yes
+  register: jsoncontent
+
+- name: Get the release matching
+  set_fact: downloadURL="{{ (jsoncontent.json.assets|selectattr("name", "match", release_pattern)|first).browser_download_url }}"
+
+- name: Downloading {{ downloadURL }} to {{ destination }}
+  get_url:
+    url: "{{ downloadURL }}"
+    dest: "{{ destination }}"
+    follow: yes
+    mode: "644"

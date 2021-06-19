@@ -1,0 +1,5 @@
+---
+- name: Install stow (Debian)
+  include_role:
+    name: apps/stow/debian
+  when: ansible_distribution == "Debian"

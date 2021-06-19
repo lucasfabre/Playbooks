@@ -1,8 +1,8 @@
 ---
 - name: Install dotfiles
-  command: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles/{{ application }}/.install"
+  shell: "stow -t $HOME {{ application }}"
   args:
-    chdir: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles/{{ application }}"
+    chdir: "/home/{{ user }}/Workspace/github.com/lucasfabre/Dotfiles/"
     warn: no
   ignore_errors: yes
   become: yes
