@@ -1,0 +1,31 @@
+---
+- name: Download zoxide archive
+  include_role:
+    name: utils/download/github.com/release
+  vars:
+    github_repo: ajeetdsouza/zoxide
+    release_pattern: "^zoxide-x86_64-unknown-linux-musl.tar.gz$"
+    destination: /tmp/zoxide-x86_64-unknown-linux-musl.tar.gz
+
+- name: Ensure /opt/zoxide exist
+  file:
+    path: "/opt/zoxide"
+    state: directory
+
+- name: Extract /tmp/zoxide-x86_64-unknown-linux-musl.tar.gz into /opt/zoxide
+  unarchive:
+    src: /tmp/zoxide-x86_64-unknown-linux-musl.tar.gz
+    dest: /opt/zoxide
+    extra_opts: [--strip-components=1]
+    remote_src: yes
+
+- name: Link fzf in path (/usr/bin/fzf)
+  file:
+    src: /opt/zoxide/zoxide
+    dest: /usr/bin/zoxide
+    state: link
+
+- name: Cleanup
+  file:
+    path: /tmp/zoxide-x86_64-unknown-linux-musl.tar.gz
+    state: absent

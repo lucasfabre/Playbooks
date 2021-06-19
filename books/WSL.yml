@@ -11,7 +11,8 @@
     - apps/nodejs
     - apps/python
     - platforms/docker_host
-    - "apps/aws-cli"
+    - apps/aws-cli
+    - apps/zoxide
     - apps/bat
     - apps/fzf
     - apps/ripgrep
