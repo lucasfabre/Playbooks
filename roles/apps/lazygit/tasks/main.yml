@@ -1,5 +1,5 @@
 ---
-- name: Install zoxide (linux_amd64)
+- name: Install lazygit (Linux x86_64)
   include_role:
-    name: apps/zoxide/linux_amd64
+    name: apps/lazygit/linux_amd64
   when: ansible_system == "Linux" and ansible_architecture == "x86_64"

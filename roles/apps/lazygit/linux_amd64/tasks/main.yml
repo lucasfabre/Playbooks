@@ -1,0 +1,31 @@
+---
+- name: Download lazygit archive
+  include_role:
+    name: utils/download/github.com/release
+  vars:
+    github_repo: jesseduffield/lazygit
+    release_pattern: "^lazygit_.*_Linux_x86_64\\.tar\\.gz$"
+    destination: /tmp/lazygit_Linux_x86_64.tar.gz
+
+- name: Ensure /opt/lazygit exist
+  file:
+    path: "/opt/lazygit"
+    state: directory
+
+- name: Extract /tmp/lazygit_Linux_x86_64.tar.gz into /opt/zoxide
+  unarchive:
+    src: /tmp/lazygit_Linux_x86_64.tar.gz
+    dest: /opt/lazygit
+    remote_src: yes
+
+- name: Link lazygit in path (/usr/bin/lazygit)
+  file:
+    src: /opt/lazygit/lazygit
+    dest: /usr/bin/lazygit
+    state: link
+
+- name: Cleanup
+  file:
+    path: /tmp/lazygit_Linux_x86_64.tar.gz
+    state: absent
+

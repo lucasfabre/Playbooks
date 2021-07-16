@@ -16,6 +16,7 @@
     - apps/bat
     - apps/fzf
     - apps/ripgrep
+    - apps/lazygit
     - role: common/dotconfig
       application: vim
     - role: common/dotconfig
