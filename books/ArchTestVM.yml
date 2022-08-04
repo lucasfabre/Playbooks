@@ -1,0 +1,29 @@
+- hosts: Framework
+  remote_user: lucas
+  become: yes
+  become_user: root
+  roles:
+    # - common
+    #- apps/git
+    # - role: apps/zsh
+    #   chsh: True
+    # - apps/oh-my-zsh
+    #- apps/neovim
+    #- platforms/podman
+    - platforms/archlinux/aur/chaoticaur
+    - platforms/archlinux/aur/yay
+    # - apps/aws-cli
+    # - apps/zoxide
+    # - apps/bat
+    # - apps/fzf
+    # - apps/ripgrep
+    # - apps/lazygit
+    # - role: common/dotconfig
+    #   application: vim
+    # - role: common/dotconfig
+    #   application: zsh
+  vars:
+    user: lucas
+    ansible_distribution: ArchLinux
+  vars_files:
+    - ../group_vars/vault

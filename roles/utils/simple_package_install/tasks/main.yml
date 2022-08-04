@@ -1,0 +1,4 @@
+---
+- name: Simple install package from repo
+  include_role:
+    name: "utils/simple_package_install/{{ansible_distribution}}"

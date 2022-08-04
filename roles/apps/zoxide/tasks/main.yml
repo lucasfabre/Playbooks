@@ -1,5 +1,16 @@
 ---
-- name: Install zoxide (linux_amd64)
-  include_role:
-    name: apps/zoxide/linux_amd64
-  when: ansible_system == "Linux" and ansible_architecture == "x86_64"
+- block:
+
+  - name: Install zoxide (linux_amd64)
+    include_role:
+      name: apps/zoxide/linux_amd64
+    when: _src != "pkg" and ansible_system == "Linux" and ansible_architecture == "x86_64"
+
+  - name: Install zoxide (from repository)
+    include_role:
+      name: utils/simple_package_install
+    vars:
+      package: zoxide
+
+  vars:
+    _src: "{{ src | default('pkg') }}"

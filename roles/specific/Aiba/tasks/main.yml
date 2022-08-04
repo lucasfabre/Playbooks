@@ -1,6 +1,0 @@
----
-- name: Copy the Frez docker compose file
-  copy:
-    src: Caddyfile
-    dest: /etc/caddy/Caddyfile
-

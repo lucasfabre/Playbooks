@@ -1,0 +1,44 @@
+---
+- name: Enable arch multilib repository
+  blockinfile:
+    path: /etc/pacman.conf
+    marker: "# Multilib {mark}"
+    block: |
+      [multilib]
+      Include = /etc/pacman.d/mirrorlist
+    insertbefore: "#[multilib]"
+
+- name: Ensure /etc/pacman.conf contains chaoticaur
+  lineinfile:
+    path: /etc/pacman.conf
+    regexp: '\[chaotic-aur\]'
+    state: absent
+  check_mode: yes
+  changed_when: false
+  register: chaotic_aur_pacman_config
+
+- block:
+
+    - name: Add chaoticaur pacman-key
+      shell: |
+        pacman-key --recv-key FBA220DFC880C036 --keyserver keyserver.ubuntu.com && \
+        pacman-key --lsign-key FBA220DFC880C036
+      args:
+        executable: /bin/bash
+        warn: false
+
+    - name: Add chaoticaur package list
+      shell: yes | pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+      args:
+        executable: /bin/bash
+        warn: false
+
+    - name: Add chaoticaur to packman.conf
+      blockinfile:
+        path: /etc/pacman.conf
+        marker: "# ChaoticAur {mark}"
+        block: |
+          [chaotic-aur]
+          Include = /etc/pacman.d/chaotic-mirrorlist 
+
+  when: not chaotic_aur_pacman_config.found

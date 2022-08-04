@@ -1,0 +1,16 @@
+---
+- name: check if yay is already present
+  shell: which yay
+  register: which_yay_command_result
+  ignore_errors: true
+
+- block:
+
+  - name: Install yay (with pacman and chaoticaur repo)
+    shell: "yes | pacman -Sy yay"
+    args:
+      executable: /bin/bash
+      warn: false
+    register: pacman_i_yay_command_result
+
+  when: which_yay_command_result != 0

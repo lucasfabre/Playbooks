@@ -1,0 +1,12 @@
+---
+- name: Install {{pkg}} (ArchLinux)
+  pacman:
+    name: "{{pkg}}"
+    update_cache: "{{ ansible_facts.pacman_cache_up_to_date is not defined or ansible_facts.pacman_cache_up_to_date == False }}"
+    state: installed
+  vars:
+    pkg: "{{ arch_package | default(package) }}"
+
+- set_fact:
+    pacman_cache_up_to_date: true
+  when: ansible_facts.pacman_cache_up_to_date is not defined or ansible_facts.pacman_cache_up_to_date == False

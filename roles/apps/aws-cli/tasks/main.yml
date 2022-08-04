@@ -1,5 +1,18 @@
 ---
-- name: Install aws-cli (docker)
-  include_role:
-    name: apps/aws-cli/docker
 
+- block:
+
+  - name: Install aws-cli (package)
+    include_role:
+      name: utils/simple_package_install
+    vars:
+      package: aws-cli
+    when: _src == "pkg"
+
+  - name: Install aws-cli (docker)
+    include_role:
+      name: apps/aws-cli/docker
+    when: _src == "docker"
+
+  vars:
+    _src: "{{ src | default('pkg') }}"

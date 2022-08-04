@@ -1,0 +1,9 @@
+---
+- set_fact: debian_package={{package}}
+  when: debian_package is undefined
+
+- name: Install {{debian_package}} (Debian)
+  apt:
+    name: "{{debian_package}}"
+    update_cache: yes
+    state: latest

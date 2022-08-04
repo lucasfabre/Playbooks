@@ -2,4 +2,13 @@
 - name: Install neovim (appimage)
   include_role:
     name: apps/neovim/appimage
+  when: appimage is defined and {{appimage}} is True
+  register: pkg_neovim_installed = True
 
+- name: Install neovim (appimage)
+  include_role:
+    name: utils/simple_package_install
+  vars:
+    package: neovim
+  when: pkg_neovim_installed is not defined or pkg_neovim_installed == False
+ 

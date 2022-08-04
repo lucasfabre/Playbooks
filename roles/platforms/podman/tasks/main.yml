@@ -1,6 +1,6 @@
 ---
-- name: Install git
+- name: Install podman
   include_role:
     name: utils/simple_package_install
   vars:
-    package: git
+    package: podman

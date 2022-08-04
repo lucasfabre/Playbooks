@@ -1,6 +1,0 @@
----
-- name: Install zsh (debian)
-  apt:
-    name: zsh
-    update_cache: yes
-    state: latest
